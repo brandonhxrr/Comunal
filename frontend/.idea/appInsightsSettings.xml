@@ -8,10 +8,10 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="PLACEHOLDER" />
-                  <option name="mobileSdkAppId" value="" />
-                  <option name="projectId" value="" />
-                  <option name="projectNumber" value="" />
+                  <option name="appId" value="com.hacklapenos.comunal" />
+                  <option name="mobileSdkAppId" value="1:950359859093:android:7c6e07bb0058a77c0e609c" />
+                  <option name="projectId" value="comunal-1252b" />
+                  <option name="projectNumber" value="950359859093" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />

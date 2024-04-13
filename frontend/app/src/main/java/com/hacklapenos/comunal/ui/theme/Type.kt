@@ -1,4 +1,4 @@
-package com.brandohxrr.comunal.ui.theme
+package com.hacklapenos.comunal.ui.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
@@ -6,7 +6,7 @@ import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
-import com.brandohxrr.comunal.R
+import com.hacklapenos.comunal.R
 
 val Typography = Typography(
     bodySmall = TextStyle(

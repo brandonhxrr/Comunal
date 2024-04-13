@@ -1,4 +1,4 @@
-package com.brandohxrr.comunal
+package com.hacklapenos.comunal
 
 import org.junit.Test
 

@@ -1,4 +1,4 @@
-package com.brandohxrr.comunal.ui.theme
+package com.hacklapenos.comunal.ui.theme
 
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
