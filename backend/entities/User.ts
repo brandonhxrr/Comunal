@@ -6,7 +6,10 @@ import {
   UpdateDateColumn,
   OneToMany,
   BaseEntity,
+  ManyToOne,
 } from "typeorm";
+import { Roles } from "./Roles";
+import { Comunidad } from "./Comunidad";
 
 @Entity()
 export class User extends BaseEntity {
@@ -24,4 +27,10 @@ export class User extends BaseEntity {
 
   @CreateDateColumn({ name: "created_at" })
   createdAt: Date;
+
+  @OneToMany(() => Roles, (roles) => roles.user)
+  roles: Roles[];
+
+  @ManyToOne(() => Comunidad, (comunidad) => comunidad.Users)
+  comunidad: Comunidad;
 }

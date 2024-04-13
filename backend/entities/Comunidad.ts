@@ -6,7 +6,9 @@ import {
   UpdateDateColumn,
   ManyToOne,
   BaseEntity,
+  OneToMany,
 } from "typeorm";
+import { User } from "./User";
 
 @Entity()
 export class Comunidad extends BaseEntity {
@@ -30,4 +32,11 @@ export class Comunidad extends BaseEntity {
 
   @CreateDateColumn({ name: "created_at" })
   createdAt: Date;
+
+  @Column("decimal", { precision: 10, scale: 2 })
+  presupuesto: number;
+
+  @OneToMany(() => User, (user) => user.comunidad)
+  Users: User[]
+
 }

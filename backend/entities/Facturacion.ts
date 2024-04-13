@@ -2,26 +2,24 @@ import {
   Entity,
   PrimaryGeneratedColumn,
   Column,
-  CreateDateColumn,
-  UpdateDateColumn,
   ManyToOne,
   BaseEntity,
 } from "typeorm";
 
 @Entity()
-export class Proyectos extends BaseEntity {
+export class Facturacion extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
   @Column()
-  project_name: string;
+  descripcion: string;
+
+  @Column("decimal", { precision: 10, scale: 2 })
+  monto: number;
 
   @Column()
-  description: string;
+  fecha: Date;
 
   @Column()
-  duracion: string;
-
-  @Column()
-  inversion_inicial: number;
+  tipo: number;
 }

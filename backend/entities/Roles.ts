@@ -7,6 +7,7 @@ import {
   ManyToOne,
   BaseEntity,
 } from "typeorm";
+import { User } from "./User";
 
 @Entity()
 export class Roles extends BaseEntity {
@@ -27,4 +28,7 @@ export class Roles extends BaseEntity {
 
   @Column({ default: false })
   representante: boolean;
+
+  @ManyToOne(() => User, (user) => user.roles)
+  user: User;
 }
