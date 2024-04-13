@@ -7,6 +7,7 @@ import {
   ManyToOne,
   BaseEntity,
 } from "typeorm";
+import { Proyecto } from "./Proyecto";
 
 @Entity()
 export class Progreso extends BaseEntity {
@@ -27,4 +28,8 @@ export class Progreso extends BaseEntity {
 
   @Column()
   foto: string;
+
+  // Relacion de muchos progresos a un proyecto
+  @ManyToOne(() => Proyecto, (proyecto) => proyecto.progreso)
+  proyecto: Proyecto;
 }

@@ -2,12 +2,17 @@ import {
   Entity,
   PrimaryGeneratedColumn,
   Column,
-  CreateDateColumn,
-  UpdateDateColumn,
   ManyToOne,
   BaseEntity,
 } from "typeorm";
 import { User } from "./User";
+/* 
+  1- Inversor
+  2- Supervisor
+  3- Trabajador
+  4- Prestatario
+  5- Representante
+ */
 
 @Entity()
 export class Roles extends BaseEntity {

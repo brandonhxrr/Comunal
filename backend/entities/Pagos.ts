@@ -5,6 +5,8 @@ import {
   ManyToOne,
   BaseEntity,
 } from "typeorm";
+import { User } from "./User";
+import { Proyecto } from "./Proyecto";
 
 @Entity()
 export class Pagos extends BaseEntity {
@@ -19,4 +21,12 @@ export class Pagos extends BaseEntity {
 
   @Column()
   fecha: Date;
+
+  // Relacion de muchos pagos a un usuario
+  @ManyToOne(() => User, (user) => user.pagos)
+  user: User;
+
+  // Relacion de muchos pagos a un proyecto
+  @ManyToOne(() => Proyecto, (proyecto) => proyecto.pagos)
+  proyecto: Proyecto;
 }

@@ -5,6 +5,7 @@ import {
   ManyToOne,
   BaseEntity,
 } from "typeorm";
+import { Comunidad } from "./Comunidad";
 
 @Entity()
 export class Enfoque extends BaseEntity {
@@ -13,4 +14,8 @@ export class Enfoque extends BaseEntity {
 
   @Column()
   nombre: string;
+
+  // Relacion de muchos enfoques a una comunidad
+  @ManyToOne(() => Comunidad, (comunidad) => comunidad.enfoque)
+  comunidad: Comunidad;
 }

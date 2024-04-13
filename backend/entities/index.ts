@@ -7,7 +7,7 @@ import { Patrimonio } from "./Patrimonio";
 import { Progreso } from "./Progreso";
 import { Proyecto } from "./Proyecto";
 import { Pagos } from "./Pagos";
-import { Inversiones } from "./inversiones";
+import { Inversiones } from "./Inversiones";
 
 export {
   User,

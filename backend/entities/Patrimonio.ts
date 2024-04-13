@@ -7,6 +7,8 @@ import {
   ManyToOne,
   BaseEntity,
 } from "typeorm";
+import { User } from "./User";
+import { Proyecto } from "./Proyecto";
 
 @Entity()
 export class Patrimonio extends BaseEntity {
@@ -24,4 +26,12 @@ export class Patrimonio extends BaseEntity {
 
   @Column("decimal", { precision: 10, scale: 2 })
   metros: number;
+
+  // Relacion de muchos patrimonios a un usuario
+  @ManyToOne(() => User, (user) => user.patrimonio)
+  user: User;
+
+  // Relacion de muchos patrimonios a un proyecto
+  @ManyToOne(() => Proyecto, (proyecto) => proyecto.patrimonio)
+  proyecto: Proyecto;
 }
