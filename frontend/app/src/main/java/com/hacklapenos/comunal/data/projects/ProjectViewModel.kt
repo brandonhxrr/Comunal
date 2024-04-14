@@ -66,7 +66,7 @@ class ProjectViewModel : ViewModel() {
     ) =
         name.isNotEmpty() && description.isNotEmpty() && goal.isNotEmpty() && duration.isNotEmpty() && isValid(
             startDate
-        ) && isValid(endDate
+        ) && isValid(endDate)
 }
 
 fun isValid(date: String): Boolean {

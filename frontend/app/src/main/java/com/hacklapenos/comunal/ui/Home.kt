@@ -52,6 +52,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.hacklapenos.comunal.MainActivity
 import com.hacklapenos.comunal.R
 import com.hacklapenos.comunal.ui.community.CommunityScreen
+import com.hacklapenos.comunal.ui.learn.LearnScreen
 import com.hacklapenos.comunal.ui.projects.ProjectsScreen
 import com.hacklapenos.comunal.ui.theme.Screens
 
@@ -188,7 +189,7 @@ fun Home(navController: NavController?) {
                 }
 
                 3 -> {
-                    Text(text = "Aprende")
+                    LearnScreen()
                 }
             }
         }
