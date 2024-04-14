@@ -1,6 +1,6 @@
 <h1 align="center">COMUNAL APP</h1>
 
-## DESCRIPTION
+## DESCRIPTION 
 The COMUNAL APP is a mobile platform designed to assist communities in developing and organizing projects within their localities. The platform facilitates communication and collaboration among community members, as well as the management of investments within projects and the community at large.
 
 ## KEY FEATURES
