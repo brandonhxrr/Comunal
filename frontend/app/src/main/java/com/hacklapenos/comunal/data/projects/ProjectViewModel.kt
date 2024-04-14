@@ -3,8 +3,10 @@ package com.hacklapenos.comunal.data.projects
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import java.text.SimpleDateFormat
+import java.util.Locale
 
-class ProjectViewModel: ViewModel() {
+class ProjectViewModel : ViewModel() {
     private val _name = MutableLiveData<String>()
     val name: LiveData<String> = _name
 
@@ -54,6 +56,27 @@ class ProjectViewModel: ViewModel() {
         _initialAmount.value = initialAmount
     }
 
-    fun enableCreateProject(name: String, description: String, goal: String, duration: String, startDate: String, endDate: String) =
-        name.isNotEmpty() && description.isNotEmpty() && goal.isNotEmpty() && duration.isNotEmpty() && startDate.isNotEmpty() && endDate.isNotEmpty()
+    fun enableCreateProject(
+        name: String,
+        description: String,
+        goal: String,
+        duration: String,
+        startDate: String,
+        endDate: String
+    ) =
+        name.isNotEmpty() && description.isNotEmpty() && goal.isNotEmpty() && duration.isNotEmpty() && isValid(
+            startDate
+        ) && isValid(endDate
+}
+
+fun isValid(date: String): Boolean {
+    val format = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+    format.isLenient = false
+
+    return try {
+        format.parse(date)
+        true
+    } catch (e: Exception) {
+        false
+    }
 }
