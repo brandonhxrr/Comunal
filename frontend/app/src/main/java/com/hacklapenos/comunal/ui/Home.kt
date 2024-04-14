@@ -14,8 +14,12 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.rounded.CalendarMonth
+import androidx.compose.material.icons.rounded.Forest
+import androidx.compose.material.icons.rounded.Handyman
 import androidx.compose.material.icons.rounded.Home
 import androidx.compose.material.icons.rounded.Map
+import androidx.compose.material.icons.rounded.School
+import androidx.compose.material.icons.rounded.SelfImprovement
 import androidx.compose.material.icons.rounded.WbSunny
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.CenterAlignedTopAppBar
@@ -62,9 +66,9 @@ fun Home(navController: NavController?) {
         listOf("Inicio", "Proyectos", "Comunidad", "Aprende")
     val icons = listOf(
         Icons.Rounded.Home,
-        Icons.Rounded.Map,
-        Icons.Rounded.CalendarMonth,
-        Icons.Rounded.WbSunny
+        Icons.Rounded.Forest,
+        Icons.Rounded.SelfImprovement,
+        Icons.Rounded.School
     )
 
     var isLocationPermissionGranted by remember { mutableStateOf(false) }
