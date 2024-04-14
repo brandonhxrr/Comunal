@@ -177,7 +177,7 @@ fun Home(navController: NavController?) {
         Column(modifier = Modifier.padding(it)) {
             when (selectedItem) {
                 0 -> {
-                    Text(text = "Inicio")
+                    MainScreen(navController = navController!!)
                 }
 
                 1 -> {
