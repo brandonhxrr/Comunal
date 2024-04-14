@@ -153,7 +153,7 @@ fun CreateCommunity(communityViewModel: CommunityViewModel, navController: NavCo
 
         ComunalButton(
             text = "Crear comunidad",
-            enabled = communityViewModel.enableSignUp(name, description, location)
+            enabled = communityViewModel.enableCreateCommunity(name, description, location, selectedCategories)
         ) {
 
         }

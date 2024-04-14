@@ -22,8 +22,8 @@ class CommunityViewModel: ViewModel() {
     private val _selectedCategories = MutableLiveData<List<String>>()
     val selectedCategories: MutableLiveData<List<String>> = _selectedCategories
 
-    fun enableSignUp(name: String, description: String, location: String) =
-        name.isNotEmpty() && description.isNotEmpty() && location.isNotEmpty()
+    fun enableCreateCommunity(name: String, description: String, location: String, selectedcategories: List<String>) =
+        name.isNotEmpty() && description.isNotEmpty() && location.isNotEmpty() && selectedcategories.isNotEmpty()
 
     fun onNameChanged(name: String) {
         _name.value = name
