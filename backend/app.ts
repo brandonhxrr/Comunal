@@ -5,6 +5,7 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 import multer from "multer";
 import userRoutes from "./routes/user.routes";
+import comunidadRoutes from "./routes/comunidad.routes";
 
 // Cargar variables de entorno
 dotenv.config();
@@ -29,6 +30,7 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.use("/api/v1/user", userRoutes);
+app.use("/api/v1/comunidad", comunidadRoutes);
 
 app.get("/", (req, res) => {
   res.json("Server On!");

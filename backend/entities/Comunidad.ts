@@ -34,6 +34,9 @@ export class Comunidad extends BaseEntity {
   @Column("decimal", { precision: 10, scale: 2 })
   presupuesto: number;
 
+  @Column()
+  accepted: boolean;
+
   @OneToMany(() => User, (user) => user.comunidad)
   Users: User[];
 

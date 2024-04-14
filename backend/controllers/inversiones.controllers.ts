@@ -8,3 +8,8 @@ export const getInversionesByUser = async (
   req: RequestUser,
   res: Response
 ) => {};
+
+export const getInversionesByComunidad = async (
+  req: RequestUser,
+  res: Response
+) => {};

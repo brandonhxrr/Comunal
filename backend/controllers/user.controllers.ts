@@ -29,7 +29,7 @@ export const singup = async (req: Request, res: Response) => {
 
     await roles.save();
 
-    return res.status(201).json({ message: "Usuario creado" });
+    return res.status(200).json({ message: "Usuario creado" });
   } catch (error) {
     console.log("Error en singup: ", error);
     return res.status(500).json({ message: "Error en el servidor" });
