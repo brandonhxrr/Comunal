@@ -21,9 +21,12 @@ import com.hacklapenos.comunal.ui.login.SignUp2
 import com.hacklapenos.comunal.ui.theme.ComunalTheme
 import com.hacklapenos.comunal.ui.theme.Screens
 import com.google.firebase.auth.FirebaseAuth
+import com.hacklapenos.comunal.data.community.CommunityViewModel
 import com.hacklapenos.comunal.data.login.LoginViewModel
 import com.hacklapenos.comunal.ui.Home
 import com.hacklapenos.comunal.ui.UserScreen
+import com.hacklapenos.comunal.ui.community.CommunityScreen
+import com.hacklapenos.comunal.ui.community.CreateCommunity
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -99,6 +102,10 @@ fun Start() {
 
         composable(Screens.User.name) {
             UserScreen(navController = navController)
+        }
+
+        composable(Screens.AddCommunity.name) {
+            CreateCommunity(navController = navController, communityViewModel = CommunityViewModel())
         }
     }
 }
