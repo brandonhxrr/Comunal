@@ -1,11 +1,7 @@
-<h1 align="center">COMUNAL</h1>
+<h1 align="center">COMUNAL APP</h1>
 
 ## DESCRIPTION
-The COMUNAL application is a mobile platform designed to assist communities in developing and organizing projects and proposals within their localities. The platform 
-facilitates communication and collaboration among community members, as well as the management of investments within projects and the community at large.
-
-The application consists of a frontend developed with Jetpack Compose, Kotlin, and Firebase, and a backend developed with Express, Morgan, and TypeORM. This combination of 
-technologies enables a smooth and secure user experience, as well as efficient data management on the server side.
+The COMUNAL APP is a mobile platform designed to assist communities in developing and organizing projects within their localities. The platform facilitates communication and collaboration among community members, as well as the management of investments within projects and the community at large.
 
 ## KEY FEATURES
 - User Registration: Users can register in the application using their email or social media accounts.
