@@ -10,9 +10,11 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.hacklapenos.comunal.data.signup.SignUpViewModel
 import com.hacklapenos.comunal.ui.SplashScreen
 import com.hacklapenos.comunal.ui.login.Login
@@ -26,8 +28,10 @@ import com.hacklapenos.comunal.data.login.LoginViewModel
 import com.hacklapenos.comunal.data.projects.ProjectViewModel
 import com.hacklapenos.comunal.ui.Home
 import com.hacklapenos.comunal.ui.UserScreen
+import com.hacklapenos.comunal.ui.community.CommunityDetailScreen
 import com.hacklapenos.comunal.ui.community.CommunityScreen
 import com.hacklapenos.comunal.ui.community.CreateCommunity
+import com.hacklapenos.comunal.ui.community.communities
 import com.hacklapenos.comunal.ui.projects.CreateProjectScreen
 
 class MainActivity : ComponentActivity() {
@@ -113,6 +117,20 @@ fun Start() {
         composable(Screens.CreateProject.name) {
             CreateProjectScreen(navController = navController, projectViewModel = ProjectViewModel() )
         }
+
+        composable(
+            route = "${Screens.CommunityDetail.name}/{communityName}",
+            arguments = listOf(navArgument("communityName") { type = NavType.StringType })
+        ) { backStackEntry ->
+            val communityName = backStackEntry.arguments?.getString("communityName")
+            val community = communities.find { it.name == communityName }
+            if (community != null) {
+                CommunityDetailScreen(community = community) {
+                    navController.navigateUp()
+                }
+            }
+        }
+
     }
 }
 

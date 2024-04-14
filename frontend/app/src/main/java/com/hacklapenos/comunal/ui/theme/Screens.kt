@@ -8,5 +8,6 @@ enum class Screens {
     SignUp2,
     User,
     AddCommunity,
-    CreateProject
+    CreateProject,
+    CommunityDetail,
 }
