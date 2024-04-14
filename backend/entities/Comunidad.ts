@@ -19,17 +19,14 @@ export class Comunidad extends BaseEntity {
   @Column()
   foto: string;
 
-  @Column({unique: true})
+  @Column({ unique: true })
   nombre_comunidad: string;
 
   @Column()
-  representate: number;
-
-  @Column()
-  supervisor: number;
-
-  @Column()
   localidad: string;
+
+  @Column()
+  descripcion: string;
 
   @CreateDateColumn({ name: "created_at" })
   createdAt: Date;

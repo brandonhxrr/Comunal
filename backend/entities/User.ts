@@ -51,13 +51,17 @@ export class User extends BaseEntity {
   @OneToMany(() => Pagos, (pagos) => pagos.user)
   pagos: Pagos[];
 
-  // Relacion de un usuario a muchos proyectos
-  @OneToMany(() => Proyecto, (proyecto) => proyecto.user)
-  proyecto: Proyecto[];
-
   // Relacion de un usuario a muchos patrimonios
   @OneToMany(() => Patrimonio, (patrimonio) => patrimonio.user)
   patrimonio: Patrimonio[];
+
+  // Relacion de un usuario a muchos proyectos
+  @OneToMany(() => Proyecto, (proyecto) => proyecto.trabajadores)
+  proyecto: Proyecto[];
+
+  // Relacion de un usuario a muchos proyectos
+  @OneToMany(() => Proyecto, (proyecto) => proyecto.representantes)
+  proyectoRepresentante: Proyecto[];
 
   @UpdateDateColumn({ name: "updated_at" })
   updatedAt: Date;

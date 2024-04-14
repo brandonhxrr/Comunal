@@ -52,9 +52,13 @@ export class Proyecto extends BaseEntity {
   @ManyToOne(() => Facturacion, (facturacion) => facturacion.proyecto)
   facturacion: Facturacion[];
 
-  // Relacion de un proyecto a muchos usuarios
+  // Relacion de un proyecto a muchos trabajadores (usuarios con rol de trabajador)
   @ManyToOne(() => User, (user) => user.proyecto)
-  user: User[];
+  trabajadores: User[];
+
+  // Relacion de un proyecto a muchos representantes (usuarios con rol de representante)
+  @ManyToOne(() => User, (user) => user.proyecto)
+  representantes: User[];
 
   // Relacion de un proyecto a muchos patrimonios
   @ManyToOne(() => Patrimonio, (patrimonio) => patrimonio.proyecto)

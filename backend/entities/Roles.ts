@@ -6,12 +6,11 @@ import {
   BaseEntity,
 } from "typeorm";
 import { User } from "./User";
+
 /* 
   1- Inversor
-  2- Supervisor
-  3- Trabajador
-  4- Prestatario
-  5- Representante
+  2- Trabajador
+  3- Representante
  */
 
 @Entity()
@@ -23,16 +22,13 @@ export class Roles extends BaseEntity {
   inversor: boolean;
 
   @Column({ default: false })
-  supervisor: boolean;
-
-  @Column({ default: false })
   trabajador: boolean;
 
   @Column({ default: false })
-  prestatario: boolean;
+  representante: boolean;
 
   @Column({ default: false })
-  representante: boolean;
+  admin: boolean;
 
   @ManyToOne(() => User, (user) => user.roles)
   user: User;

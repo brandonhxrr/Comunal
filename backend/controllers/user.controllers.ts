@@ -36,6 +36,31 @@ export const singup = async (req: Request, res: Response) => {
   }
 };
 
+export const getInfoUser = async (req: RequestUser, res: Response) => {
+  try {
+    const userInfo = req.user;
+
+    if (!userInfo) {
+      return res.status(401).json({ message: "Necesitas estar loggeado" });
+    }
+
+    const user = await User.findOne({
+      where: { firebaseId: userInfo.firebaseId },
+      select: ["id", "email", "name", "foto"],
+      relations: ["roles"],
+    });
+
+    if (!user) {
+      return res.status(404).json({ message: "Usuario no encontrado" });
+    }
+
+    return res.status(200).json({ user });
+  } catch (error) {
+    console.log("Error en getInfoUser: ", error);
+    return res.status(500).json({ message: "Error en el servidor" });
+  }
+};
+
 export const updatePhoto = async (req: RequestUser, res: Response) => {
   try {
     const userInfo = req.user;
