@@ -4,6 +4,7 @@ import {
   Column,
   ManyToOne,
   BaseEntity,
+  CreateDateColumn,
 } from "typeorm";
 import { User } from "./User";
 import { Comunidad } from "./Comunidad";
@@ -19,8 +20,8 @@ export class Inversiones extends BaseEntity {
   @Column("decimal", { precision: 10, scale: 2 })
   total: number;
 
-  @Column()
-  fecha: Date;
+  @CreateDateColumn({ name: "created_at" })
+  createdAt: Date;
 
   // Relacion de muchas inversiones a un usuario
   @ManyToOne(() => User, (user) => user.inversiones)

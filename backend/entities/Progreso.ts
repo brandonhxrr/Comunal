@@ -20,8 +20,8 @@ export class Progreso extends BaseEntity {
   @Column()
   descripcion: string;
 
-  @Column()
-  fecha: Date;
+  @CreateDateColumn({ name: "created_at" })
+  createdAt: Date;
 
   @Column("decimal", { precision: 10, scale: 2 })
   cantidad: number;
