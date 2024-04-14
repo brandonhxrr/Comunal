@@ -26,8 +26,8 @@ export class Proyecto extends BaseEntity {
   @Column()
   duracion: string;
 
-  @Column()
-  inversion_inicial: number;
+  @Column("decimal", { precision: 10, scale: 2 })
+  inversion: number;
 
   @Column()
   objetivo: string;
@@ -40,9 +40,6 @@ export class Proyecto extends BaseEntity {
 
   @Column()
   fin: Date;
-
-  @Column("decimal", { precision: 10, scale: 2 })
-  presupuesto: number;
 
   // Relacion de un proyecto a una comunidad
   @ManyToOne(() => Comunidad, (comunidad) => comunidad.proyecto)
@@ -63,10 +60,6 @@ export class Proyecto extends BaseEntity {
   // Relacion de un proyecto a muchos patrimonios
   @ManyToOne(() => Patrimonio, (patrimonio) => patrimonio.proyecto)
   patrimonio: Patrimonio[];
-
-  // Relacion de un proyecto a muchos pagos
-  @ManyToOne(() => Pagos, (pagos) => pagos.proyecto)
-  pagos: Pagos[];
 
   // Relacion de un proyecto a muchos progresos
   @ManyToOne(() => Progreso, (progreso) => progreso.proyecto)

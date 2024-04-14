@@ -4,9 +4,10 @@ import {
   Column,
   ManyToOne,
   BaseEntity,
+  CreateDateColumn,
 } from "typeorm";
 import { User } from "./User";
-import { Proyecto } from "./Proyecto";
+import { Comunidad } from "./Comunidad";
 
 @Entity()
 export class Pagos extends BaseEntity {
@@ -19,14 +20,14 @@ export class Pagos extends BaseEntity {
   @Column("decimal", { precision: 10, scale: 2 })
   monto: number;
 
-  @Column()
-  fecha: Date;
+  @CreateDateColumn({ name: "created_at" })
+  createdAt: Date;
 
   // Relacion de muchos pagos a un usuario
   @ManyToOne(() => User, (user) => user.pagos)
   user: User;
 
-  // Relacion de muchos pagos a un proyecto
-  @ManyToOne(() => Proyecto, (proyecto) => proyecto.pagos)
-  proyecto: Proyecto;
+  // Una comunidad hace muchos pagos
+  @ManyToOne(() => Comunidad, (comunidad) => comunidad.pagos)
+  comunidad: Comunidad;
 }

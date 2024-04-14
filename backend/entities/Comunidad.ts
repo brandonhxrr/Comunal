@@ -10,6 +10,7 @@ import { User } from "./User";
 import { Proyecto } from "./Proyecto";
 import { Inversiones } from "./Inversiones";
 import { Enfoque } from "./Enfoque";
+import { Pagos } from "./Pagos";
 
 @Entity()
 export class Comunidad extends BaseEntity {
@@ -51,4 +52,8 @@ export class Comunidad extends BaseEntity {
   // Relacion de una comunidad a muchos enfoques
   @OneToMany(() => Enfoque, (enfoque) => enfoque.comunidad)
   enfoque: Enfoque[];
+
+  // Relacion de una comunidad a muchos pagos
+  @OneToMany(() => Pagos, (pagos) => pagos.comunidad)
+  pagos: Pagos[];
 }

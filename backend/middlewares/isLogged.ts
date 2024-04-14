@@ -16,8 +16,8 @@ export const isLogged = async (
 
     const user = await User.findOne({
       where: { firebaseId: id },
-      relations: ["roles"],
-      select: ["id", "firebaseId", "email", "roles", "name"],
+      relations: ["roles", "comunidad"],
+      select: ["id", "firebaseId", "email", "roles", "name", "comunidad"],
     });
 
     if (!user) {
