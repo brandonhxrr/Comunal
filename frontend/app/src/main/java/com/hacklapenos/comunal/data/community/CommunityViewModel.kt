@@ -16,12 +16,6 @@ class CommunityViewModel: ViewModel() {
     private val _location = MutableLiveData<String>()
     val location: LiveData<String> = _location
 
-    private val _showError = MutableLiveData<Boolean>()
-    val showError: LiveData<Boolean> = _showError
-
-    private val _errorMessage = MutableLiveData<String>()
-    val errorMessage: LiveData<String> = _errorMessage
-
     private val _selectedImageUri = MutableLiveData<String>()
     val selectedImageUri: MutableLiveData<String> = _selectedImageUri
 
@@ -41,14 +35,6 @@ class CommunityViewModel: ViewModel() {
 
     fun onLocationChanged(location: String) {
         _location.value = location
-    }
-
-    fun showError() {
-        _showError.value = true
-    }
-
-    fun hideError() {
-        _showError.value = false
     }
 
     fun onImageSelected(imageUri: String) {

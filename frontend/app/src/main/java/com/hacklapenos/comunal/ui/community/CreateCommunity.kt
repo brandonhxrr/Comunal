@@ -59,8 +59,6 @@ fun CreateCommunity(communityViewModel: CommunityViewModel, navController: NavCo
 
     val name: String by communityViewModel.name.observeAsState(initial = "")
     val selectedImageUri: String? by communityViewModel.selectedImageUri.observeAsState()
-    val errorMessage: String by communityViewModel.errorMessage.observeAsState(initial = "")
-    val showError: Boolean by communityViewModel.showError.observeAsState(initial = false)
     val description by communityViewModel.description.observeAsState(initial = "")
     val location by communityViewModel.location.observeAsState(initial = "")
     val selectedCategories: List<String> by communityViewModel.selectedCategories.observeAsState(initial = emptyList())
@@ -130,12 +128,6 @@ fun CreateCommunity(communityViewModel: CommunityViewModel, navController: NavCo
         }
 
         Spacer(modifier = Modifier.height(32.dp))
-
-        if (showError) {
-            ErrorMessage(errorMessage)
-        }
-
-        Spacer(modifier = Modifier.height(16.dp))
 
         CommunityTextField(value = name, placeholder = "Nombre de la comunidad") {
             communityViewModel.onNameChanged(it)
