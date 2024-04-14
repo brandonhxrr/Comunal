@@ -2,7 +2,6 @@ import { RequestUser } from "../interfaces";
 import { Response } from "express";
 import { User, Roles, Enfoque, Comunidad } from "../entities";
 
-
 export const createComunidad = async (req: RequestUser, res: Response) => {
   try {
     const { nombre } = req.body;

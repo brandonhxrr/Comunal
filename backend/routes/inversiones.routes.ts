@@ -9,7 +9,7 @@ import { isLogged, esInversor, esRepresentante } from "../middlewares";
 
 const router = Router();
 
-router.post("/", isLogged, esInversor, makeInversion);
+router.post("/", makeInversion);
 
 router.post("/patrimonio", isLogged, esInversor, makePatrimonio);
 

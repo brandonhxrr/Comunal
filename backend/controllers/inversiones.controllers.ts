@@ -1,10 +1,10 @@
 import { User, Roles, Comunidad, Inversiones } from "../entities";
 import { RequestUser } from "../interfaces";
-import { Request, Response } from "express";
+import { Response } from "express";
 
 export const makeInversion = async (req: RequestUser, res: Response) => {
   try {
-    const id = parseInt(req.params.id);
+       const id = parseInt(req.params.id);
 
     if (!id) return res.status(400).json({ message: "Faltan campos" });
 
@@ -14,14 +14,13 @@ export const makeInversion = async (req: RequestUser, res: Response) => {
     if (!userInfo) return res.status(401).json({ message: "No autorizado" });
 
     const user = await User.findOne({
-      where: { id: userInfo.id },
-      relations: ["roles"],
+      where: { firebaseId: userInfo?.firebaseId },
     });
 
     if (!user)
       return res.status(404).json({ message: "Usuario no encontrado" });
 
-    const rolesUser = Roles.findOne({
+    const rolesUser = await Roles.findOne({
       where: { user: user },
     });
 
@@ -43,9 +42,10 @@ export const makeInversion = async (req: RequestUser, res: Response) => {
 
     inversion.comunidad = comunidad;
 
-    await inversion.save();
+    rolesUser.inversor = true;
 
-    return res.status(200).json({ message: "Inversión realizada" });
+    await rolesUser.save();
+    await inversion.save();
   } catch (error) {
     console.error("Error al realizar la inversión:", error);
     res.status(500).json({ message: "Hubo un error al realizar la inversión" });
