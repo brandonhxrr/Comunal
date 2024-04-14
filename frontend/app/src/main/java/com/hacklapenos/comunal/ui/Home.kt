@@ -52,6 +52,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.hacklapenos.comunal.MainActivity
 import com.hacklapenos.comunal.R
 import com.hacklapenos.comunal.ui.community.CommunityScreen
+import com.hacklapenos.comunal.ui.projects.ProjectsScreen
 import com.hacklapenos.comunal.ui.theme.Screens
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalGlideComposeApi::class)
@@ -179,7 +180,7 @@ fun Home(navController: NavController?) {
                 }
 
                 1 -> {
-                    Text(text = "Proyectos")
+                    ProjectsScreen(navController = navController!!)
                 }
 
                 2 -> {

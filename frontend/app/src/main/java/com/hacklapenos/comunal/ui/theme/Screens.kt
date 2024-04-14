@@ -7,6 +7,6 @@ enum class Screens {
     SignUp1,
     SignUp2,
     User,
-    Community,
-    AddCommunity
+    AddCommunity,
+    CreateProject
 }

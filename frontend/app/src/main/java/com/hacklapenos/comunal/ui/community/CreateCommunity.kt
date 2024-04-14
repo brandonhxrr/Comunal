@@ -1,7 +1,6 @@
 package com.hacklapenos.comunal.ui.community
 
 import android.net.Uri
-import android.util.Log
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.background
@@ -12,17 +11,14 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.rounded.ArrowBack
 import androidx.compose.material.icons.rounded.AddPhotoAlternate
@@ -30,11 +26,9 @@ import androidx.compose.material.icons.rounded.Close
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.State
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
@@ -42,8 +36,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.text.input.ImeAction
-import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
@@ -51,7 +43,7 @@ import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
 import com.hacklapenos.comunal.data.community.CommunityViewModel
 import com.hacklapenos.comunal.ui.ComunalButton
-import com.hacklapenos.comunal.ui.login.ErrorMessage
+import com.hacklapenos.comunal.ui.ComunalTextField
 
 @OptIn(ExperimentalGlideComposeApi::class)
 @Composable
@@ -61,7 +53,9 @@ fun CreateCommunity(communityViewModel: CommunityViewModel, navController: NavCo
     val selectedImageUri: String? by communityViewModel.selectedImageUri.observeAsState()
     val description by communityViewModel.description.observeAsState(initial = "")
     val location by communityViewModel.location.observeAsState(initial = "")
-    val selectedCategories: List<String> by communityViewModel.selectedCategories.observeAsState(initial = emptyList())
+    val selectedCategories: List<String> by communityViewModel.selectedCategories.observeAsState(
+        initial = emptyList()
+    )
 
     val registerImageActivityLauncher =
         rememberLauncherForActivityResult(contract = ActivityResultContracts.GetContent()) { uri: Uri? ->
@@ -129,15 +123,15 @@ fun CreateCommunity(communityViewModel: CommunityViewModel, navController: NavCo
 
         Spacer(modifier = Modifier.height(32.dp))
 
-        CommunityTextField(value = name, placeholder = "Nombre de la comunidad") {
+        ComunalTextField(value = name, placeholder = "Nombre de la comunidad") {
             communityViewModel.onNameChanged(it)
         }
 
-        CommunityTextField(value = location, placeholder = "Ubicación") {
+        ComunalTextField(value = location, placeholder = "Ubicación") {
             communityViewModel.onLocationChanged(it)
         }
 
-        CommunityTextField(
+        ComunalTextField(
             value = description,
             placeholder = "Descripción",
             modifier = Modifier.height(70.dp)
@@ -147,46 +141,34 @@ fun CreateCommunity(communityViewModel: CommunityViewModel, navController: NavCo
 
         Spacer(modifier = Modifier.height(20.dp))
 
-        ChipList(categories = listOf("Ganadería", "Jardinería", "Reforestación", "Agricultura", "Pesca", "Artesanías", "Apicultura", "Construcción", "Educación"), selectedCategories = selectedCategories, communityViewModel = communityViewModel)
+        ChipList(
+            categories = listOf(
+                "Ganadería",
+                "Jardinería",
+                "Reforestación",
+                "Agricultura",
+                "Pesca",
+                "Artesanías",
+                "Apicultura",
+                "Construcción",
+                "Educación"
+            ), selectedCategories = selectedCategories, communityViewModel = communityViewModel
+        )
 
         Spacer(modifier = Modifier.height(20.dp))
 
         ComunalButton(
             text = "Crear comunidad",
-            enabled = communityViewModel.enableCreateCommunity(name, description, location, selectedCategories)
+            enabled = communityViewModel.enableCreateCommunity(
+                name,
+                description,
+                location,
+                selectedCategories
+            )
         ) {
 
         }
     }
-}
-
-@Composable
-fun CommunityTextField(
-    value: String,
-    placeholder: String,
-    modifier: Modifier? = Modifier,
-    onTextChanged: (String) -> Unit
-) {
-    OutlinedTextField(
-        value = value,
-        onValueChange = {
-            onTextChanged(it)
-        },
-        placeholder = {
-            Text(
-                text = placeholder,
-                style = MaterialTheme.typography.bodySmall
-            )
-        },
-        textStyle = MaterialTheme.typography.bodySmall,
-        modifier = modifier!!
-            .fillMaxWidth()
-            .padding(vertical = 8.dp, horizontal = 8.dp),
-        keyboardOptions = KeyboardOptions.Default.copy(
-            keyboardType = KeyboardType.Text,
-            imeAction = ImeAction.Done
-        ),
-    )
 }
 
 @Composable
