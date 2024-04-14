@@ -10,4 +10,5 @@ enum class Screens {
     AddCommunity,
     CreateProject,
     CommunityDetail,
+    ProjectDetail
 }

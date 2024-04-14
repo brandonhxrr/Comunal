@@ -33,6 +33,8 @@ import com.hacklapenos.comunal.ui.community.CommunityScreen
 import com.hacklapenos.comunal.ui.community.CreateCommunity
 import com.hacklapenos.comunal.ui.community.communities
 import com.hacklapenos.comunal.ui.projects.CreateProjectScreen
+import com.hacklapenos.comunal.ui.projects.ProjectDetailScreen
+import com.hacklapenos.comunal.ui.projects.projects
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -126,6 +128,18 @@ fun Start() {
             val community = communities.find { it.name == communityName }
             if (community != null) {
                 CommunityDetailScreen(community = community) {
+                    navController.navigateUp()
+                }
+            }
+        }
+
+        composable(route = "${Screens.ProjectDetail.name}/{projectName}",
+            arguments = listOf(navArgument("projectName") { type = NavType.StringType })
+        ) { backStackEntry ->
+            val projectName = backStackEntry.arguments?.getString("projectName")
+            val project = projects.find { it.name == projectName }
+            if (project != null) {
+                ProjectDetailScreen(project = project) {
                     navController.navigateUp()
                 }
             }
