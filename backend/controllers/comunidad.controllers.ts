@@ -1,5 +1,5 @@
 import { RequestUser } from "../interfaces";
-import { Request, Response } from "express";
+import { Response } from "express";
 import { User, Roles, Enfoque, Comunidad } from "../entities";
 
 export const createComunidad = async (req: RequestUser, res: Response) => {
@@ -29,7 +29,7 @@ export const createComunidad = async (req: RequestUser, res: Response) => {
 
 export const requestComunidad = async (req: RequestUser, res: Response) => {
   try {
-    const { nombre, localidad, url, descripcion } = req.body;
+    const { nombre, localidad, url, descripcion, enfoque } = req.body;
     const userInfo = req.user;
 
     if (!nombre || !localidad || !descripcion) {
@@ -57,8 +57,36 @@ export const requestComunidad = async (req: RequestUser, res: Response) => {
 
     await comunidad.save();
 
+    // Verificar si hay enfoques y crear registros en la tabla Enfoque
+    if (enfoque && Array.isArray(enfoque)) {
+      const enfoqueEntities = enfoque.map((item: string) => {
+        const enfoqueEntity = new Enfoque();
+        enfoqueEntity.nombre = item;
+        enfoqueEntity.comunidad = comunidad;
+        return enfoqueEntity;
+      });
+
+      // Guardar los registros de Enfoque en la base de datos
+      await Enfoque.save(enfoqueEntities);
+    }
+
+    const rolesUser = await Roles.findOne({
+      where: { user: user },
+    });
+
+    if (!rolesUser) {
+      return res.status(404).json({ message: "Rol no encontrado" });
+    }
+
+    rolesUser.representante = true;
+
+    await rolesUser.save();
+
     return res.status(200).json({ message: "Comunidad creada" });
-  } catch (error) {}
+  } catch (error) {
+    console.log("Error en requestComunidad: ", error);
+    return res.status(500).json({ message: "Error en el servidor" });
+  }
 };
 
 export const getComunidades = async (req: RequestUser, res: Response) => {

@@ -4,6 +4,7 @@ import {
   Column,
   ManyToOne,
   BaseEntity,
+  CreateDateColumn,
 } from "typeorm";
 import { Proyecto } from "./Proyecto";
 
@@ -18,8 +19,8 @@ export class Facturacion extends BaseEntity {
   @Column("decimal", { precision: 10, scale: 2 })
   monto: number;
 
-  @Column()
-  fecha: Date;
+  @CreateDateColumn ({ name: "created_at" })
+  createdAt: Date;
 
   @Column()
   tipo: number;
